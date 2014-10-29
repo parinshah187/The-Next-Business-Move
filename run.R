@@ -1,4 +1,5 @@
-# Load required libraries
+# Load/install required libraries
+install.packages("MASS")
 library(MASS)
 
 # read file with sentiment value for words
