@@ -1,4 +1,4 @@
-# Load/install required libraries
+# Install and load required libraries
 install.packages("MASS")
 library(MASS)
 
