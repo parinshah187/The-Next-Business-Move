@@ -25,7 +25,7 @@ results$pos <- as.numeric(results$pos)
 results$vPos <- as.numeric(results$vPos)
 results$stars <- as.factor(results$stars)
 
-
+# Training cumulative link models for predicting rating of a review
 model <- polr(stars ~ vNeg + neg + pos + vPos, data=results, Hess = TRUE)
 clmFit <- clm(stars ~ vNeg + neg +pos + vPos,link = "logit", data= results)
 predict(clmFit, result, type = "prob")
