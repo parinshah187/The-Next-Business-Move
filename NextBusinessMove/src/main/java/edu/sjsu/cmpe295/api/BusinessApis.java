@@ -10,6 +10,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 import edu.sjsu.cmpe295.dao.BusinessDao;
+import edu.sjsu.cmpe295.dao.UserDao;
 
 @Path("/biz")
 public class BusinessApis {
@@ -19,6 +20,7 @@ public class BusinessApis {
 	public Response findBizById( @PathParam("id") String id) {
 		BusinessDao bizDao = new BusinessDao();
 		String bizObj = bizDao.findBusinessById(id);
+		System.out.println(bizObj);
 		return Response.status(200).entity(bizObj).build();
 	}
 	
@@ -29,5 +31,13 @@ public class BusinessApis {
 		List<String> bizList = bizDao.findAllBusiness();
 		return Response.status(200).entity(bizList.toString()).build();
 	}
-
+	
+	@GET
+	@Path("/recUsers/{id}")
+	public Response recUsersById( @PathParam("id") String businessId) {
+		UserDao userDao = new UserDao();
+		List<String> bizObj = userDao.recUsers(businessId);
+		return Response.status(200).entity(bizObj.toString()).build();
+	}
+	
 }
