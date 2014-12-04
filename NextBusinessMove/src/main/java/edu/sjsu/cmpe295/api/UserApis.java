@@ -14,20 +14,23 @@ import edu.sjsu.cmpe295.dao.UserDao;
 @Path("/user")
 public class UserApis {
 
+	/*@GET
+	@Path("/{parameter}")
+	public Response responseMsg( @PathParam("parameter") String parameter,
+			@DefaultValue("Nothing to say") @QueryParam("value") String value) {
+
+		String output = "Hello from: " + parameter + " : " + value;
+		return Response.status(200).entity(output).build();
+	}*/
+	
+	UserDao userDao = new UserDao();
+	
 	@GET
 	@Path("/{id}")
-	public Response finduserById( @PathParam("id") String userId) {
-		UserDao userDao = new UserDao();
-		String user = userDao.findUserById(userId);
-		return Response.status(200).entity(user).build();
-	}
-	
-/*	@GET
-	@Path("/rec/{id}")
 	public Response findrecById( @PathParam("id") String userId) {
-		UserDao userDao = new UserDao();
-		String user = userDao.findRecosById(userId);
-		return Response.status(200).entity(user).build();
-	}*/
+
+		List<String> recList = userDao.findRecosById(userId);
+		return Response.status(200).entity(recList.toString()).build();
+	}
 	
 }
